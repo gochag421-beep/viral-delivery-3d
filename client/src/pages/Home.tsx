@@ -19,10 +19,10 @@ import {
   Zap,
 } from "lucide-react";
 
-const heroAsset = "/manus-storage/viral-delivery-hero_45dd7d38.png";
-const routeAsset = "/manus-storage/fastmovment-route-sketch_44de6d16.png";
-const dropAsset = "/manus-storage/fastmovment-offer-sketch_85eba96e.png";
-const markAsset = "/manus-storage/viral-delivery-mark_7b48c497.png";
+const heroAsset = "https://viraldel3d-p4acy5hk.manus.space/manus-storage/viral-delivery-hero_45dd7d38.png";
+const routeAsset = "https://viraldel3d-p4acy5hk.manus.space/manus-storage/fastmovment-route-sketch_44de6d16.png";
+const dropAsset = "https://viraldel3d-p4acy5hk.manus.space/manus-storage/fastmovment-offer-sketch_85eba96e.png";
+const markAsset = "https://viraldel3d-p4acy5hk.manus.space/manus-storage/viral-delivery-mark_7b48c497.png";
 
 const services = [
   {
