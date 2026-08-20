@@ -49,26 +49,10 @@ const services = [
   },
 ];
 
-function useParallax() {
-  const [point, setPoint] = useState({ x: 0, y: 0 });
-  useEffect(() => {
-    const onMove = (event: MouseEvent) => {
-      setPoint({
-        x: (event.clientX / window.innerWidth - 0.5) * 2,
-        y: (event.clientY / window.innerHeight - 0.5) * 2,
-      });
-    };
-    window.addEventListener("mousemove", onMove, { passive: true });
-    return () => window.removeEventListener("mousemove", onMove);
-  }, []);
-  return point;
-}
-
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrollY, setScrollY] = useState(0);
   const offerRef = useRef<HTMLDivElement>(null);
-  const point = useParallax();
 
   useEffect(() => {
     const onScroll = () => setScrollY(window.scrollY);
@@ -108,7 +92,7 @@ export default function Home() {
             <div className="hero-actions"><button className="button button--lime" onClick={goToOffer}>Start a delivery <ArrowUpRight size={17} /></button><a className="text-link" href="#how">See how it moves <ArrowDownRight size={17} /></a></div>
             <div className="hero-footnote"><span>01 / 04</span><span>SCROLL TO DISCOVER</span><ArrowDownRight size={17} /></div>
           </div>
-          <div className="hero-art" aria-hidden="true" style={{ transform: `translate3d(${point.x * 9}px, ${point.y * 9 - scrollY * 0.08}px, 0)` }}>
+          <div className="hero-art" aria-hidden="true" >
             <div className="hero-art-glow" />
             <div className="hero-art-tag tag-one">FAST HANDOFF <ArrowUpRight size={13} /></div>
             <div className="hero-art-tag tag-two">ROUTE / 24–7</div>
@@ -123,7 +107,7 @@ export default function Home() {
         <section className="manifesto-section route-stop" id="how"><div className="route-spine route-spine--light"><span>02</span><i></i><span>→</span></div>
           <div className="section-index"><span>02</span><span className="vertical-line" /><span>THE METHOD</span></div>
           <div className="manifesto-content"><p className="kicker">NOT JUST A DROP-OFF</p><h2>Delivery should feel<br /><span>like a green light.</span></h2><p className="body-copy">We connect the city’s best places and people with a delivery flow that is easy to start, simple to follow and impossible to miss.</p><div className="manifesto-note"><MapPin size={18} /><span>Built for Athens. Ready for wherever you are next.</span></div></div>
-          <div className="route-visual" style={{ transform: `translate3d(${point.x * -8}px, ${point.y * -6}px, 0) rotate(${point.x * 2}deg)` }}><img src={routeAsset} alt="" /><div className="route-pin pin-a">A</div><div className="route-pin pin-b">B</div><svg viewBox="0 0 300 220" className="route-path" aria-hidden="true"><path d="M22 181 C74 118 83 193 134 126 S214 101 272 38" /></svg></div>
+          <div className="route-visual" ><img src={routeAsset} alt="" /><div className="route-pin pin-a">A</div><div className="route-pin pin-b">B</div><svg viewBox="0 0 300 220" className="route-path" aria-hidden="true"><path d="M22 181 C74 118 83 193 134 126 S214 101 272 38" /></svg></div>
         </section>
 
         <section className="services-section route-stop" id="services"><div className="route-spine"><span>03</span><i></i><span>→</span></div>
@@ -132,7 +116,7 @@ export default function Home() {
         </section>
 
         <section className="offer-section route-stop" id="offer" ref={offerRef}><div className="route-spine route-spine--lime"><span>04</span><i></i><span>→</span></div>
-          <div className="offer-art" style={{ transform: `translate3d(${point.x * 6}px, ${point.y * 4}px, 0) rotate(${point.x * 1.3}deg)` }}><img src={dropAsset} alt="" /><div className="offer-sticker">NEW<br />DROP<br /><span>↗</span></div></div>
+          <div className="offer-art" ><img src={dropAsset} alt="" /><div className="offer-sticker">NEW<br />DROP<br /><span>↗</span></div></div>
           <div className="offer-copy"><p className="kicker">YOUR NEXT MOVE</p><h2>Make it<br /><em>viral.</em></h2><p className="body-copy">Get your first delivery on us when you order through the new Viral route.</p><div className="offer-code"><span>USE CODE</span><strong>MOVEFAST</strong><button onClick={() => navigator.clipboard?.writeText("MOVEFAST")} aria-label="Copy offer code">COPY</button></div><button className="button button--black" onClick={() => window.open("tel:+302100000000", "_self")}>Call to order <Phone size={16} /></button></div>
           <div className="offer-corner">OFFER / 001</div>
         </section>
