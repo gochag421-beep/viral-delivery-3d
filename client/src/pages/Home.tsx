@@ -103,8 +103,8 @@ export default function Home() {
           <div className="hero-gridline" />
           <div className="hero-copy"><div className="dispatch-ticket"><img src={markAsset} alt="" /><span>VD / DISPATCH 001</span><b>ATHENS · LIVE</b></div>
             <div className="eyebrow"><span className="live-dot" /> LIVE IN YOUR CITY <span className="eyebrow-line" /></div>
-            <h1>MOVE<br /><span>THE</span> MOMENT.</h1>
-            <p className="hero-lede">Food, essentials, gifts and everything in between — delivered with a little more speed, clarity and attitude.</p><div className="hero-promise"><span><Clock3 size={15} /> 30–45 MIN ETA</span><span><MapPin size={15} /> ATHENS / LOCAL ZONES</span></div>
+            <h1>FAST<br /><span>FOOD</span> MOVES.</h1>
+            <p className="hero-lede">Fast food, essentials, gifts and everything in between — delivered with a little more speed, clarity and attitude.</p><div className="hero-promise"><span><Clock3 size={15} /> 30–45 MIN ETA</span><span><MapPin size={15} /> ATHENS / LOCAL ZONES</span></div>
             <div className="hero-actions"><button className="button button--lime" onClick={goToOffer}>Start a delivery <ArrowUpRight size={17} /></button><a className="text-link" href="#how">See how it moves <ArrowDownRight size={17} /></a></div>
             <div className="hero-footnote"><span>01 / 04</span><span>SCROLL TO DISCOVER</span><ArrowDownRight size={17} /></div>
           </div>
