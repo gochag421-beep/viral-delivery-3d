@@ -1,7 +1,8 @@
 # Current task
 
-Add the official company identity and contact details provided by the user to the FASTMOVEMENT website.
+Remove the Instagram indication and replace missing image areas with matching sketch-style visuals that fit FASTMOVEMENT.
 
-- [ ] Locate the current branding and contact fields.
-- [ ] Insert the official company details.
-- [ ] Verify and publish the contact update.
+- [ ] Audit missing visuals and social-link placement.
+- [ ] Create and integrate matching sketch visuals.
+- [ ] Remove Instagram and verify the page.
+- [ ] Publish the completed visual update.

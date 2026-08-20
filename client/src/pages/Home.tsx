@@ -8,7 +8,6 @@ import {
   ArrowUpRight,
   Box,
   Clock3,
-  Instagram,
   MapPin,
   Menu,
   MoveUpRight,
@@ -21,8 +20,8 @@ import {
 } from "lucide-react";
 
 const heroAsset = "/manus-storage/viral-delivery-hero_45dd7d38.png";
-const routeAsset = "/manus-storage/viral-delivery-route_0fe9e465.png";
-const dropAsset = "/manus-storage/viral-delivery-drop_6a4738ad.png";
+const routeAsset = "/manus-storage/fastmovment-route-sketch_44de6d16.png";
+const dropAsset = "/manus-storage/fastmovment-offer-sketch_85eba96e.png";
 const markAsset = "/manus-storage/viral-delivery-mark_7b48c497.png";
 
 const services = [
@@ -140,7 +139,7 @@ export default function Home() {
         <section className="proof-section route-stop"><div className="route-spine route-spine--orange"><span>05</span><i></i><span>→</span></div><div className="proof-label"><PackageCheck size={18} /> THE NETWORK STANDARD</div><div className="proof-grid"><div><strong>01</strong><span>Clear requests</span></div><div><strong>02</strong><span>Local drivers</span></div><div><strong>03</strong><span>Flexible routes</span></div><div><strong>04</strong><span>More control</span></div></div></section>
       </main>
 
-      <footer className="site-footer"><div className="footer-brand"><div className="footer-ticket">NETWORK / 06</div><img src={markAsset} alt="" className="brand-mark" /><span>FAST<br /><em>MOVMENT</em></span></div><p>FASTMOVEMENT<br />ΜΟΝΟΠΡΟΣΩΠΗ Ι.Κ.Ε.</p><div className="footer-links"><a href="mailto:companygroup@gmail.com">companygroup@gmail.com <MoveUpRight size={15} /></a><a href="tel:+306982274382">698 227 4382 <Phone size={15} /></a><a href="https://maps.google.com/?q=Kassianis+15+Ano+Liosia+13341" target="_blank" rel="noreferrer">Κασσιανής 15, Άνω Λιόσια<br />ΤΚ 13341 <MapPin size={15} /></a><a href="https://instagram.com" target="_blank" rel="noreferrer">Instagram <Instagram size={15} /></a></div><div className="footer-bottom"><span>© 2026 FASTMOVEMENT ΜΟΝΟΠΡΟΣΩΠΗ Ι.Κ.Ε.</span><span>ΑΝΩ ΛΙΟΣΙΑ / ΑΘΗΝΑ</span><a href="#top">BACK TO TOP ↑</a></div></footer>
+      <footer className="site-footer"><div className="footer-brand"><div className="footer-ticket">NETWORK / 06</div><img src={markAsset} alt="" className="brand-mark" /><span>FAST<br /><em>MOVMENT</em></span></div><p>FASTMOVEMENT<br />ΜΟΝΟΠΡΟΣΩΠΗ Ι.Κ.Ε.</p><div className="footer-links"><a href="mailto:companygroup@gmail.com">companygroup@gmail.com <MoveUpRight size={15} /></a><a href="tel:+306982274382">698 227 4382 <Phone size={15} /></a><a href="https://maps.google.com/?q=Kassianis+15+Ano+Liosia+13341" target="_blank" rel="noreferrer">Κασσιανής 15, Άνω Λιόσια<br />ΤΚ 13341 <MapPin size={15} /></a></div><div className="footer-bottom"><span>© 2026 FASTMOVEMENT ΜΟΝΟΠΡΟΣΩΠΗ Ι.Κ.Ε.</span><span>ΑΝΩ ΛΙΟΣΙΑ / ΑΘΗΝΑ</span><a href="#top">BACK TO TOP ↑</a></div></footer>
     </div>
   );
 }
