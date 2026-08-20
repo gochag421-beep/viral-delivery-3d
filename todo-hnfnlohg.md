@@ -1,6 +1,8 @@
 # Current task
 
-Change only the hero headline to exactly **FASTMOVMENT** with no space, leaving all other content and design unchanged.
+Redesign the site as a marketplace that connects customers with delivery drivers, rather than a company that performs deliveries itself.
 
-- [ ] Replace the exact headline text.
-- [ ] Verify and publish the text change.
+- [ ] Audit existing page structure and messaging.
+- [ ] Rewrite marketplace positioning and calls to action.
+- [ ] Update sections for customers and drivers.
+- [ ] Verify and publish the redesigned page.
