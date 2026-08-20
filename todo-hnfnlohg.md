@@ -1,8 +1,7 @@
 # Current task
 
-Redesign the site as a marketplace that connects customers with delivery drivers, rather than a company that performs deliveries itself.
+Add the official company identity and contact details provided by the user to the FASTMOVEMENT website.
 
-- [ ] Audit existing page structure and messaging.
-- [ ] Rewrite marketplace positioning and calls to action.
-- [ ] Update sections for customers and drivers.
-- [ ] Verify and publish the redesigned page.
+- [ ] Locate the current branding and contact fields.
+- [ ] Insert the official company details.
+- [ ] Verify and publish the contact update.
