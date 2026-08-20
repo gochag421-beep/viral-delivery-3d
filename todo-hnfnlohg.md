@@ -1,6 +1,7 @@
-# Task
+# Current task
 
-- [ ] Inspect the current movement-speed implementation.
-- [ ] Change only the movement speed.
-- [ ] Verify that the rest of the page remains unchanged.
-- [ ] Save and deliver the updated project.
+Change only the main headline wording to **FAST MOVEMENT** and leave all other content, design, and behavior unchanged.
+
+- [ ] Locate the headline.
+- [ ] Replace only the headline wording.
+- [ ] Verify and publish the text change.
