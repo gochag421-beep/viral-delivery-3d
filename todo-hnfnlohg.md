@@ -1,8 +1,6 @@
 # Current task
 
-Remove the Instagram indication and replace missing image areas with matching sketch-style visuals that fit FASTMOVEMENT.
+Make the current FASTMOVEMENT site available online and synchronized with the connected GitHub repository.
 
-- [ ] Audit missing visuals and social-link placement.
-- [ ] Create and integrate matching sketch visuals.
-- [ ] Remove Instagram and verify the page.
-- [ ] Publish the completed visual update.
+- [ ] Synchronize the current project state.
+- [ ] Confirm the live URL and repository-ready checkpoint.
