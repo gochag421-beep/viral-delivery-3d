@@ -8,6 +8,13 @@
       "when": 1787308184091,
       "tag": "0000_left_violations",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1787308675415,
+      "tag": "0001_smooth_tempest",
+      "breakpoints": true
     }
   ]
 }

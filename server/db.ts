@@ -1,6 +1,6 @@
 import { eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users } from "../drizzle/schema";
+import { InsertOrder, InsertUser, orders, users } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -89,4 +89,44 @@ export async function getUserByOpenId(openId: string) {
   return result.length > 0 ? result[0] : undefined;
 }
 
-// TODO: add feature queries here as your schema grows.
+export async function createOrder(order: InsertOrder) {
+  const db = await getDb();
+  if (!db) throw new Error("Database is not available");
+  const result = await db.insert(orders).values(order);
+  const id = Number(result[0]?.insertId ?? 0);
+  if (!id) throw new Error("Could not create order");
+  const rows = await db.select().from(orders).where(eq(orders.id, id)).limit(1);
+  return rows[0];
+}
+
+export async function getOrderById(id: number) {
+  const db = await getDb();
+  if (!db) throw new Error("Database is not available");
+  const rows = await db.select().from(orders).where(eq(orders.id, id)).limit(1);
+  return rows[0];
+}
+
+export async function attachRevolutOrder(orderId: number, revolutOrderId: string, revolutOrderToken: string) {
+  const db = await getDb();
+  if (!db) throw new Error("Database is not available");
+  await db.update(orders).set({ revolutOrderId, revolutOrderToken }).where(eq(orders.id, orderId));
+  return getOrderById(orderId);
+}
+
+export type OrderStatus = "pending_payment" | "paid" | "assigned" | "completed" | "cancelled";
+
+export function shouldUpdateOrderStatus(current: OrderStatus, next: OrderStatus) {
+  if ((current === "paid" || current === "completed") && (next === "cancelled" || next === "pending_payment")) return false;
+  return current !== next;
+}
+
+export async function updateOrderStatusByRevolutId(revolutOrderId: string, status: OrderStatus) {
+  const db = await getDb();
+  if (!db) throw new Error("Database is not available");
+  const rows = await db.select().from(orders).where(eq(orders.revolutOrderId, revolutOrderId)).limit(1);
+  const current = rows[0];
+  if (!current) return;
+  if (!shouldUpdateOrderStatus(current.status, status)) return;
+  await db.update(orders).set({ status }).where(eq(orders.revolutOrderId, revolutOrderId));
+}
+

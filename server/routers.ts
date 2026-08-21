@@ -2,7 +2,9 @@ import { COOKIE_NAME } from "@shared/const";
 import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
 import { z } from "zod";
-import { getPaymentSettingsSummary, savePaymentSettings, validatePaymentSettings } from "./paymentSettings";
+import { getDecryptedPaymentSettings, getPaymentSettingsSummary, savePaymentSettings, validatePaymentSettings } from "./paymentSettings";
+import { createOrder } from "./db";
+import { createRevolutOrder } from "./revolut";
 import { adminProcedure, publicProcedure, router } from "./_core/trpc";
 
 export const appRouter = router({
@@ -17,6 +19,32 @@ export const appRouter = router({
         success: true,
       } as const;
     }),
+  }),
+
+  orders: router({
+    checkoutConfig: publicProcedure.query(async () => {
+      const settings = await getDecryptedPaymentSettings();
+      return { configured: Boolean(settings), publicKey: settings?.publicKey ?? null, mode: "prod" as const };
+    }),
+    createCheckoutOrder: publicProcedure
+      .input(z.object({
+        customerName: z.string().min(2).max(160),
+        customerEmail: z.string().email().max(320),
+        pickupAddress: z.string().min(5).max(2000),
+        dropoffAddress: z.string().min(5).max(2000),
+        itemDescription: z.string().min(2).max(4000),
+        amountCents: z.number().int().min(100).max(1000000),
+      }))
+      .mutation(async ({ input, ctx }) => {
+        const order = await createOrder({ ...input, currency: "EUR", customerId: ctx.user?.id ?? null });
+        if (!order) throw new Error("Could not create order");
+        return createRevolutOrder({
+          orderId: order.id,
+          amountCents: input.amountCents,
+          currency: "EUR",
+          description: `FASTMOVMENT delivery request #${order.id}`,
+        });
+      }),
   }),
 
   paymentSettings: router({

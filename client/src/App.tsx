@@ -5,8 +5,10 @@ import NotFound from "@/pages/NotFound";
 import { Route, Router as WouterRouter, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
+import { LanguageProvider } from "./contexts/LanguageContext";
 import Home from "./pages/Home";
 import AdminPaymentSettings from "./pages/AdminPaymentSettings";
+import OrderCheckout from "./pages/OrderCheckout";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -15,6 +17,7 @@ function Router() {
       <Switch>
       <Route path="/" component={Home} />
       <Route path="/admin/payments" component={AdminPaymentSettings} />
+      <Route path="/order" component={OrderCheckout} />
       <Route path="/404" component={NotFound} />
       <Route component={NotFound} />
       </Switch>
@@ -26,10 +29,12 @@ export default function App() {
   return (
     <ErrorBoundary>
       <ThemeProvider defaultTheme="dark">
-        <TooltipProvider>
-          <Toaster theme="dark" />
-          <Router />
-        </TooltipProvider>
+        <LanguageProvider>
+          <TooltipProvider>
+            <Toaster theme="dark" />
+            <Router />
+          </TooltipProvider>
+        </LanguageProvider>
       </ThemeProvider>
     </ErrorBoundary>
   );

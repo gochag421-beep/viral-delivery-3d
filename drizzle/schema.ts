@@ -38,3 +38,23 @@ export const paymentSettings = mysqlTable("paymentSettings", {
 
 export type PaymentSettings = typeof paymentSettings.$inferSelect;
 export type InsertPaymentSettings = typeof paymentSettings.$inferInsert;
+
+export const orders = mysqlTable("orders", {
+  id: int("id").autoincrement().primaryKey(),
+  customerId: int("customerId"),
+  customerName: varchar("customerName", { length: 160 }).notNull(),
+  customerEmail: varchar("customerEmail", { length: 320 }).notNull(),
+  pickupAddress: text("pickupAddress").notNull(),
+  dropoffAddress: text("dropoffAddress").notNull(),
+  itemDescription: text("itemDescription").notNull(),
+  amountCents: int("amountCents").notNull(),
+  currency: varchar("currency", { length: 3 }).notNull().default("EUR"),
+  status: mysqlEnum("status", ["pending_payment", "paid", "assigned", "completed", "cancelled"]).notNull().default("pending_payment"),
+  revolutOrderId: varchar("revolutOrderId", { length: 128 }),
+  revolutOrderToken: varchar("revolutOrderToken", { length: 128 }),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type Order = typeof orders.$inferSelect;
+export type InsertOrder = typeof orders.$inferInsert;

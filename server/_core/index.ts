@@ -7,6 +7,7 @@ import { registerOAuthRoutes } from "./oauth";
 import { registerStorageProxy } from "./storageProxy";
 import { appRouter } from "../routers";
 import { createContext } from "./context";
+import { handleRevolutWebhook, verifyRevolutWebhook } from "../revolut";
 import { serveStatic, setupVite } from "./vite";
 
 function isPortAvailable(port: number): Promise<boolean> {
@@ -32,10 +33,31 @@ async function startServer() {
   const app = express();
   const server = createServer(app);
   // Configure body parser with larger size limit for file uploads
-  app.use(express.json({ limit: "50mb" }));
+  app.use(express.json({
+    limit: "50mb",
+    verify: (req, _res, buffer) => {
+      (req as express.Request & { rawBody?: string }).rawBody = buffer.toString("utf8");
+    },
+  }));
   app.use(express.urlencoded({ limit: "50mb", extended: true }));
   registerStorageProxy(app);
   registerOAuthRoutes(app);
+  app.post("/api/revolut/webhook", async (req, res) => {
+    try {
+      const rawBody = (req as express.Request & { rawBody?: string }).rawBody ?? "";
+      const timestamp = req.header("Revolut-Request-Timestamp") ?? "";
+      const signature = req.header("Revolut-Signature") ?? "";
+      if (!rawBody || !timestamp || !signature || !(await verifyRevolutWebhook(rawBody, timestamp, signature))) {
+        res.status(401).json({ error: "Invalid webhook signature" });
+        return;
+      }
+      await handleRevolutWebhook(req.body);
+      res.status(204).end();
+    } catch (error) {
+      console.error("[Revolut] Webhook handling failed", error);
+      res.status(500).json({ error: "Webhook handling failed" });
+    }
+  });
   // tRPC API
   app.use(
     "/api/trpc",
