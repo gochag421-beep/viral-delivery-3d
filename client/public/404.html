@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#11110f" />
+  <title>FASTMOVMENT — Ανακατεύθυνση…</title>
+  <script>
+    // GitHub Pages SPA fallback: any unknown route (e.g. /order, /admin/payments)
+    // is served this file. Save the requested path and bounce to the app root,
+    // where the client router restores the route without a server round-trip.
+    (function () {
+      var BASE = "/viral-delivery-3d/";
+      var requested = window.location.pathname;
+      var relative = requested.startsWith(BASE) ? requested.slice(BASE.length) : requested.replace(/^\//, "");
+      relative = relative ? "/" + relative : "/";
+      try {
+        sessionStorage.setItem("fm:spa-redirect", relative);
+      } catch (e) {
+        /* sessionStorage unavailable – just land on the home page */
+      }
+      window.location.replace(BASE);
+    })();
+  </script>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background: #11110f;
+      color: #f4f0e8;
+      font-family: "DM Sans", Arial, sans-serif;
+      text-align: center;
+    }
+    a {
+      color: #d7ff38;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <p>Ανακατεύθυνση… <a href="/viral-delivery-3d/">Μετάβαση στην αρχική</a></p>
+  </div>
+</body>
+</html>
