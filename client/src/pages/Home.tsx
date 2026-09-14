@@ -6,6 +6,7 @@ import { useAuth } from "@/_core/hooks/useAuth";
 import LanguageMenu from "@/components/LanguageMenu";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useEffect, useRef, useState } from "react";
+import { Link } from "wouter";
 import {
   ArrowDownRight,
   ArrowUpRight,
@@ -22,10 +23,11 @@ import {
   Zap,
 } from "lucide-react";
 
-const heroAsset = "https://viraldel3d-p4acy5hk.manus.space/manus-storage/viral-delivery-hero_45dd7d38.png";
-const routeAsset = "https://viraldel3d-p4acy5hk.manus.space/manus-storage/fastmovment-route-sketch_44de6d16.png";
-const dropAsset = "https://viraldel3d-p4acy5hk.manus.space/manus-storage/fastmovment-offer-sketch_85eba96e.png";
-const markAsset = "https://viraldel3d-p4acy5hk.manus.space/manus-storage/viral-delivery-mark_7b48c497.png";
+const assetBase = import.meta.env.BASE_URL;
+const heroAsset = `${assetBase}assets/fastmovment-hero.svg`;
+const routeAsset = `${assetBase}assets/fastmovment-route.svg`;
+const dropAsset = `${assetBase}assets/fastmovment-drop.svg`;
+const markAsset = `${assetBase}assets/fastmovment-mark.svg`;
 
 const greekServices = [
   { title: "Για όσους χρειάζονται οδηγό", text: "Δημοσίευσε μια παράδοση, δες διαθέσιμους τοπικούς οδηγούς και διάλεξε τη διαδρομή που ταιριάζει στον χρόνο και το budget σου.", stat: "Βρες ταίρι" },
@@ -122,7 +124,7 @@ export default function Home() {
             <div className="eyebrow"><span className="live-dot" /> {isGreek ? "Η ΠΟΛΗ, ΣΥΝΔΕΔΕΜΕΝΗ" : "THE CITY, CONNECTED"} <span className="eyebrow-line" /></div>
             <h1>FASTMOVMENT</h1>
             <p className="hero-lede">{isGreek ? "Το τοπικό δίκτυο που συνδέει κάθε αίτημα παράδοσης με διαθέσιμο οδηγό — γρήγορα, καθαρά και με τους δικούς σου όρους." : "The local network that connects every delivery request with an available driver — faster, clearer, and on your terms."}</p><div className="hero-promise"><span><Users size={15} /> {isGreek ? "ΠΕΛΑΤΕΣ + ΟΔΗΓΟΙ" : "CUSTOMERS + DRIVERS"}</span><span><MapPin size={15} /> {isGreek ? "ΑΘΗΝΑ / ΤΟΠΙΚΕΣ ΖΩΝΕΣ" : "ATHENS / LOCAL ZONES"}</span></div>
-            <div className="hero-actions"><a className="button button--lime" href="/order">{isGreek ? "Βρες οδηγό" : "Find a driver"} <ArrowUpRight size={17} /></a><a className="text-link" href="#how">{isGreek ? "Δες πώς λειτουργεί" : "See how it works"} <ArrowDownRight size={17} /></a></div>
+            <div className="hero-actions"><Link className="button button--lime" href="/order">{isGreek ? "Βρες οδηγό" : "Find a driver"} <ArrowUpRight size={17} /></Link><a className="text-link" href="#how">{isGreek ? "Δες πώς λειτουργεί" : "See how it works"} <ArrowDownRight size={17} /></a></div>
             <div className="hero-footnote"><span>01 / 04</span><span>{isGreek ? "ΚΙΝΗΣΟΥ ΜΕ ΤΟΝ ΤΡΟΠΟ ΣΟΥ" : "MOVE YOUR WAY"}</span><ArrowDownRight size={17} /></div>
           </div>
           <div className="hero-art" aria-hidden="true" style={{ transform: `translate3d(${point.x * 9}px, ${point.y * 9 - scrollY * 0.08}px, 0)` }}>
@@ -149,7 +151,7 @@ export default function Home() {
 
         <section className="offer-section route-stop" id="offer" ref={offerRef}><div className="route-spine route-spine--lime"><span>04</span><i></i><span>→</span></div>
           <div className="offer-art" style={{ transform: `translate3d(${point.x * 6}px, ${point.y * 4}px, 0) rotate(${point.x * 1.3}deg)` }}><img src={dropAsset} alt="" /><div className="offer-sticker">{isGreek ? "Η ΔΙΚΗ ΣΟΥ" : "YOUR"}<br />{isGreek ? "ΚΙΝΗΣΗ" : "MOVE"}<br /><span>↗</span></div></div>
-          <div className="offer-copy"><p className="kicker">{isGreek ? "ΔΙΑΛΕΞΕ ΤΗΝ ΠΛΕΥΡΑ ΣΟΥ" : "CHOOSE YOUR SIDE"}</p><h2>{isGreek ? "Μπες σε" : "Get in"}<br /><em>{isGreek ? "κίνηση." : "motion."}</em></h2><p className="body-copy">{isGreek ? "Χρειάζεσαι να μετακινηθεί κάτι; Βρες έναν τοπικό οδηγό. Έχεις όχημα και χρόνο; Κάνε τη διαδρομή σου την επόμενη ευκαιρία σου." : "Need something moved? Find a local driver. Have a vehicle and time? Turn your route into your next opportunity."}</p><div className="offer-code"><span>{isGreek ? "ΓΙΑ ΟΔΗΓΟΥΣ" : "FOR DRIVERS"}</span><strong>JOIN FM</strong><button onClick={() => navigator.clipboard?.writeText("JOIN FM")} aria-label={isGreek ? "Αντιγραφή κωδικού εγγραφής οδηγού" : "Copy driver signup code"}>{isGreek ? "ΑΝΤΙΓΡΑΦΗ" : "COPY"}</button></div><a className="button button--black" href="/order">{isGreek ? "Ξεκίνα με το FASTMOVMENT" : "Start with FASTMOVMENT"} <ArrowUpRight size={16} /></a></div>
+          <div className="offer-copy"><p className="kicker">{isGreek ? "ΔΙΑΛΕΞΕ ΤΗΝ ΠΛΕΥΡΑ ΣΟΥ" : "CHOOSE YOUR SIDE"}</p><h2>{isGreek ? "Μπες σε" : "Get in"}<br /><em>{isGreek ? "κίνηση." : "motion."}</em></h2><p className="body-copy">{isGreek ? "Χρειάζεσαι να μετακινηθεί κάτι; Βρες έναν τοπικό οδηγό. Έχεις όχημα και χρόνο; Κάνε τη διαδρομή σου την επόμενη ευκαιρία σου." : "Need something moved? Find a local driver. Have a vehicle and time? Turn your route into your next opportunity."}</p><div className="offer-code"><span>{isGreek ? "ΓΙΑ ΟΔΗΓΟΥΣ" : "FOR DRIVERS"}</span><strong>JOIN FM</strong><button onClick={() => navigator.clipboard?.writeText("JOIN FM")} aria-label={isGreek ? "Αντιγραφή κωδικού εγγραφής οδηγού" : "Copy driver signup code"}>{isGreek ? "ΑΝΤΙΓΡΑΦΗ" : "COPY"}</button></div><Link className="button button--black" href="/order">{isGreek ? "Ξεκίνα με το FASTMOVMENT" : "Start with FASTMOVMENT"} <ArrowUpRight size={16} /></Link></div>
           <div className="offer-corner">NETWORK / 001</div>
         </section>
 

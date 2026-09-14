@@ -8,6 +8,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { ArrowLeft, CheckCircle2, MapPin, Package, WalletCards } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
+import { Link } from "wouter";
 
 const initialForm = { customerName: "", customerEmail: "", pickupAddress: "", dropoffAddress: "", itemDescription: "", amount: "25" };
 
@@ -73,7 +74,7 @@ export default function OrderCheckout() {
   return (
     <main className="min-h-screen bg-[#0c0d0d] text-[#f6f4eb] px-5 py-8 md:px-10">
       <div className="mx-auto max-w-6xl">
-        <div className="mb-10 flex items-center justify-between"><a href="/" className="inline-flex items-center gap-2 text-sm uppercase tracking-wider text-white/60 hover:text-[#d8ff29]"><ArrowLeft size={16} /> {isGreek ? "Πίσω στο FASTMOVMENT" : "Back to FASTMOVMENT"}</a><LanguageMenu /></div>
+        <div className="mb-10 flex items-center justify-between"><Link href="/" className="inline-flex items-center gap-2 text-sm uppercase tracking-wider text-white/60 hover:text-[#d8ff29]"><ArrowLeft size={16} /> {isGreek ? "Πίσω στο FASTMOVMENT" : "Back to FASTMOVMENT"}</Link><LanguageMenu /></div>
         <div className="grid gap-8 lg:grid-cols-[1.05fr_.95fr]">
           <section>
             <p className="text-xs uppercase tracking-[0.3em] text-[#ff7040]">{isGreek ? "ΖΗΤΑ ΟΔΗΓΟ / 01" : "REQUEST A DRIVER / 01"}</p>
@@ -83,7 +84,7 @@ export default function OrderCheckout() {
           </section>
 
           <section className="border border-white/10 bg-[#151716] p-6 md:p-8">
-            {paid ? <div className="grid min-h-[520px] place-items-center text-center"><div><CheckCircle2 className="mx-auto mb-5 text-[#d8ff29]" size={54} /><p className="text-xs uppercase tracking-[.3em] text-[#d8ff29]">{isGreek ? "Η ΠΛΗΡΩΜΗ ΕΛΗΦΘΗ" : "PAYMENT RECEIVED"}</p><h2 className="mt-3 text-3xl font-black">{isGreek ? "Το αίτημά σου ξεκινά." : "Your request is moving."}</h2><p className="mt-4 text-white/55">{isGreek ? "Η πληρωμή ολοκληρώθηκε. Το FASTMOVMENT μπορεί τώρα να ξεκινήσει το matching οδηγού." : "The payment was completed. FASTMOVMENT can now continue with driver matching."}</p><a className="mt-7 inline-flex bg-[#ff7040] px-5 py-3 font-bold uppercase tracking-wider text-black" href="/">{isGreek ? "Επιστροφή στο portal" : "Return to portal"}</a></div></div> : <>
+            {paid ? <div className="grid min-h-[520px] place-items-center text-center"><div><CheckCircle2 className="mx-auto mb-5 text-[#d8ff29]" size={54} /><p className="text-xs uppercase tracking-[.3em] text-[#d8ff29]">{isGreek ? "Η ΠΛΗΡΩΜΗ ΕΛΗΦΘΗ" : "PAYMENT RECEIVED"}</p><h2 className="mt-3 text-3xl font-black">{isGreek ? "Το αίτημά σου ξεκινά." : "Your request is moving."}</h2><p className="mt-4 text-white/55">{isGreek ? "Η πληρωμή ολοκληρώθηκε. Το FASTMOVMENT μπορεί τώρα να ξεκινήσει το matching οδηγού." : "The payment was completed. FASTMOVMENT can now continue with driver matching."}</p><Link className="mt-7 inline-flex bg-[#ff7040] px-5 py-3 font-bold uppercase tracking-wider text-black" href="/">{isGreek ? "Επιστροφή στο portal" : "Return to portal"}</Link></div></div> : <>
               <div className="mb-7"><p className="text-xs uppercase tracking-[.24em] text-[#d8ff29]">{isGreek ? "ΣΤΟΙΧΕΙΑ ΠΑΡΑΔΟΣΗΣ" : "DELIVERY DETAILS"}</p><h2 className="mt-2 text-2xl font-bold">{isGreek ? "Ξεκίνα ένα αίτημα" : "Start a request"}</h2></div>
               <div className="space-y-5">
                 <div className="grid gap-5 sm:grid-cols-2"><div className="space-y-2"><Label htmlFor="customerName">{isGreek ? "Ονοματεπώνυμο" : "Your name"}</Label><Input id="customerName" value={form.customerName} onChange={update("customerName")} placeholder="Maria Papadopoulou" className="border-white/15 bg-black/30 text-white" /></div><div className="space-y-2"><Label htmlFor="customerEmail">Email</Label><Input id="customerEmail" type="email" value={form.customerEmail} onChange={update("customerEmail")} placeholder="maria@example.com" className="border-white/15 bg-black/30 text-white" /></div></div>
@@ -92,7 +93,7 @@ export default function OrderCheckout() {
                 <div className="space-y-2"><Label htmlFor="itemDescription">{isGreek ? "Τι μετακινείται;" : "What is moving?"}</Label><textarea id="itemDescription" value={form.itemDescription} onChange={update("itemDescription")} placeholder={isGreek ? "Μικρό δέμα, έγγραφα, λουλούδια…" : "Small parcel, documents, flowers…"} className="min-h-24 w-full rounded-md border border-white/15 bg-black/30 px-3 py-2 text-sm text-white outline-none ring-offset-background placeholder:text-white/30 focus-visible:ring-2 focus-visible:ring-[#d8ff29]" /></div>
                 <div className="space-y-2"><Label htmlFor="amount">{isGreek ? "Ποσό παράδοσης (€)" : "Delivery amount (€)"}</Label><Input id="amount" type="number" min="1" step="0.01" value={form.amount} onChange={update("amount")} className="border-white/15 bg-black/30 text-white" /></div>
               </div>
-              <div className="mt-7 border-t border-white/10 pt-7"><p className="mb-4 text-xs uppercase tracking-[.2em] text-white/45">{isGreek ? "ΠΛΗΡΩΜΗ" : "CHECKOUT"}</p>{!config.data?.configured ? <div className="border border-[#ff7040]/40 bg-[#ff7040]/10 p-4 text-sm text-[#ffb49a]">{isGreek ? "Η πληρωμή δεν έχει ρυθμιστεί ακόμη. Ο διαχειριστής πρέπει να προσθέσει τα κλειδιά Revolut στις" : "Checkout is not configured yet. An administrator must add the Revolut Merchant keys in"} <a className="underline" href="/admin/payments">{isGreek ? "Ρυθμίσεις πληρωμών" : "Payment Settings"}</a>.</div> : !formReady ? <p className="text-sm text-white/45">{isGreek ? "Συμπλήρωσε όλα τα στοιχεία για να φορτώσουν οι ασφαλείς τρόποι πληρωμής." : "Complete all delivery fields to load secure payment methods."}</p> : <div ref={checkoutTarget} className="min-h-24" />}</div>
+              <div className="mt-7 border-t border-white/10 pt-7"><p className="mb-4 text-xs uppercase tracking-[.2em] text-white/45">{isGreek ? "ΠΛΗΡΩΜΗ" : "CHECKOUT"}</p>{!config.data?.configured ? <div className="border border-[#ff7040]/40 bg-[#ff7040]/10 p-4 text-sm text-[#ffb49a]">{isGreek ? "Η πληρωμή δεν έχει ρυθμιστεί ακόμη. Ο διαχειριστής πρέπει να προσθέσει τα κλειδιά Revolut στις" : "Checkout is not configured yet. An administrator must add the Revolut Merchant keys in"} <Link className="underline" href="/admin/payments">{isGreek ? "Ρυθμίσεις πληρωμών" : "Payment Settings"}</Link>.</div> : !formReady ? <p className="text-sm text-white/45">{isGreek ? "Συμπλήρωσε όλα τα στοιχεία για να φορτώσουν οι ασφαλείς τρόποι πληρωμής." : "Complete all delivery fields to load secure payment methods."}</p> : <div ref={checkoutTarget} className="min-h-24" />}</div>
             </>}
           </section>
         </div>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 900" fill="none">
+  <rect width="900" height="900" fill="#d7ff38"/>
+  <path d="M190 660 C310 470 350 640 460 480 S700 360 750 210" stroke="#11110f" stroke-width="16" stroke-dasharray="34 30" stroke-linecap="round"/>
+  <circle cx="190" cy="660" r="40" fill="#11110f"/>
+  <text x="190" y="676" text-anchor="middle" font-family="Barlow Condensed, Arial, sans-serif" font-size="46" font-weight="800" fill="#d7ff38">A</text>
+  <circle cx="750" cy="210" r="40" fill="#ff6b35" stroke="#11110f" stroke-width="8"/>
+  <text x="750" y="226" text-anchor="middle" font-family="Barlow Condensed, Arial, sans-serif" font-size="46" font-weight="800" fill="#11110f">B</text>
+  <rect x="520" y="620" width="240" height="130" rx="22" fill="#11110f" transform="rotate(-6 640 685)"/>
+  <text x="640" y="706" text-anchor="middle" font-family="Barlow Condensed, Arial, sans-serif" font-size="56" font-weight="900" fill="#d7ff38" transform="rotate(-6 640 685)">FASTMOVMENT</text>
+</svg>

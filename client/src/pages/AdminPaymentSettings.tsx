@@ -6,6 +6,7 @@ import { trpc } from "@/lib/trpc";
 import { LockKeyhole, ShieldCheck, WalletCards } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
+import { Link } from "wouter";
 
 export default function AdminPaymentSettings() {
   const { user, loading } = useAuth();
@@ -39,7 +40,7 @@ export default function AdminPaymentSettings() {
             <h1 className="text-4xl font-black tracking-tight md:text-6xl">Payment control.</h1>
             <p className="mt-4 max-w-2xl text-base leading-7 text-white/60">Connect Revolut Merchant once, then let the portal handle card payments, Revolut Pay, and eligible Google Pay checkout flows.</p>
           </div>
-          <a className="border border-[#ff7040] px-4 py-3 text-sm font-bold uppercase tracking-wider text-[#ff7040] transition hover:bg-[#ff7040] hover:text-black" href="/">Back to portal</a>
+          <Link className="border border-[#ff7040] px-4 py-3 text-sm font-bold uppercase tracking-wider text-[#ff7040] transition hover:bg-[#ff7040] hover:text-black" href="/">Back to portal</Link>
         </div>
 
         <section className="grid gap-5 md:grid-cols-3 mb-8">
